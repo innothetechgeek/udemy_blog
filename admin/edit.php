@@ -367,7 +367,7 @@
                                 </div>
                                 <div class="d-flex mt-3 justify-content-end">
                                     <a href="http://localhost/1_gridblog/public/post/list" class="btn btn-secondary">Back</a>
-                                    <button type="submit" class="btn btn-success">Add Post</button>
+                                    <button type="submit" class="btn btn-success">Update Post</button>
                                 </div>
                             </form>
                         </div>
