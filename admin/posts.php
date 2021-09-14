@@ -49,13 +49,13 @@
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.html">
+                            <a class="nav-link active" href="dashboard.php">
                                 <i class="ni ni-tv-2 text-primary"></i>
                                 <span class="nav-link-text">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="posts.html">
+                            <a class="nav-link" href="posts.php">
                                 <i class="ni ni-bullet-list-67 text-default"></i>
                                 <span class="nav-link-text">Posts</span>
                             </a>
@@ -405,7 +405,7 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                    <a class="dropdown-item" href="edit.php">Edit</a>
                                                     <a class="dropdown-item" href="#">Delete</a>
                                                 </div>
                                             </div>

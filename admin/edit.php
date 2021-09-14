@@ -348,7 +348,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-username">Post Title</label>
-                                                <input type="text" id="input-username" class="form-control" placeholder="Post Title">
+                                                <input type="text" name="post_title" class="form-control" placeholder="Post Title">
                                             </div>
                                         </div>
                                     </div>
@@ -356,13 +356,13 @@
                                 <div class="pl-lg-4 ">
                                     <div class="form-group ">
                                         <label class="form-control-label ">Post Content</label>
-                                        <textarea id="postContent" rows="15" class="form-control " placeholder="Enter post title"></textarea>
+                                        <textarea id="postContent" name="post_content" rows="15" class="form-control " placeholder="Enter post title"></textarea>
                                     </div>
                                 </div>
                                 <div class="pl-lg-4 ">
                                     <label class="form-control-label ">Upload Post image</label>
                                     <div class="input-group">
-                                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <input type="file" name="post_image" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                                     </div>
                                 </div>
                                 <div class="d-flex mt-3 justify-content-end">
@@ -414,7 +414,7 @@
     <script src="../assets/backend/js/argon.js?v=1.2.0 "></script>
 
     <script>
-        var editor = new FroalaEditor('#postContent');
+        var editor = new FroalaEditor('#postContent',{heightMin: 350});
     </script>
 </body>
 
