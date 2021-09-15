@@ -1,3 +1,17 @@
+<?php
+
+    include_once 'PostController.php';
+
+    $postController = new PostController();
+
+    if(($_SERVER['REQUEST_METHOD'] == 'POST')){
+
+        $postController->addPost();
+
+    }
+
+?>
+
 <!--
 =========================================================
 * Argon Dashboard - v1.2.0
@@ -341,7 +355,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form action ="" method ="POST" enctype="multipart/form-data">
                                 <h6 class="heading-small text-muted mb-4">Post information</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
@@ -358,12 +372,16 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-username">Post Category</label>
+                                                <?php
+                                                    include_once "../Crud.php";
+                                                    $crud = new Crud();
+                                                    $categories = $crud->read('Select * from categories');
+
+                                                ?>
                                                 <select name="cat_id" class ="form-control">
-                                                    <option>Web Development</option>
-                                                    <option>Fashion</option>
-                                                    <option>Inspiration</option>
-                                                    <option>Vacation</option>
-                                                    <option>Worship</option>
+                                                    <?php foreach($categories as $key => $category){ ?>
+                                                        <option value="<?=  $category['cat_id'] ?>"><?= $category['cat_name'] ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -382,7 +400,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex mt-3 justify-content-end">
-                                    <a href="http://localhost/1_gridblog/public/post/list" class="btn btn-secondary">Back</a>
+                                    <a href="posts.php" class="btn btn-secondary">Back</a>
                                     <button type="submit" class="btn btn-success">Add Post</button>
                                 </div>
                             </form>

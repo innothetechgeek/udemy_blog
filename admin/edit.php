@@ -1,3 +1,18 @@
+<?php
+
+    include_once 'PostController.php';
+
+    $postController = new PostController();
+    $post_id = $_GET['post-id'];
+    if(($_SERVER['REQUEST_METHOD'] == 'POST')){
+
+        $postController->editPost($post_id);
+
+    }
+
+?>
+
+
 <!--
 =========================================================
 * Argon Dashboard - v1.2.0
