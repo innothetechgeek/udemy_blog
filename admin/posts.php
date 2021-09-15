@@ -363,7 +363,7 @@
                                 </thead>
                                 <tbody class="list">
                                     <?php
-                                        include_once 'PostController.php';
+                                        include_once '../PostController.php';
                                         $postController = new PostController();
                                         $posts = $postController->getPosts();
 
@@ -373,8 +373,8 @@
                                         <tr>
                                             <th scope="row">
                                                 <div class="media align-items-center">
-                                                    <a href="#" class="avatar rounded-circle mr-3">
-                                                        <img alt="Image placeholder" src="../assets/backend/img/theme/bootstrap.jpg">
+                                                    <a href="#" class="avatar  mr-3">
+                                                        <img width = '60' height = '48' src="../post_images/post_<?=$post['post_id']?>/<?=$post['post_image'] ?>" />
                                                     </a>
                                                     <div class="media-body">
                                                         <span class="name mb-0 text-sm"><?= $post['post_title'] ?></span>
@@ -382,7 +382,7 @@
                                                 </div>
                                             </th>
                                             <td class="budget">
-                                            <?= substr($post['post_title'],0,60) ?> .. .
+                                                <?= strip_tags((html_entity_decode(substr($post['post_content'],0,20)))) ?> ...
                                             </td>
                                             <td>
                                                 <span class="badge badge-dot mr-4">
@@ -413,7 +413,7 @@
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                        <a class="dropdown-item" href="edit.php?post-id=">Edit</a>
+                                                        <a class="dropdown-item" href="edit.php?post-id=<?= $post['post_id'] ?>">Edit</a>
                                                         <a class="dropdown-item" href="#">Delete</a>
                                                     </div>
                                                 </div>

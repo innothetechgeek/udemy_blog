@@ -1,12 +1,16 @@
 <?php
 
-    include_once 'PostController.php';
+    include_once '../PostController.php';
 
-    $postController = new PostController();
+   
     $post_id = $_GET['post-id'];
+
+    $post_controller = new PostController();
+    $post = $post_controller->getPost($post_id);
+
     if(($_SERVER['REQUEST_METHOD'] == 'POST')){
 
-        $postController->editPost($post_id);
+        $post_controller->editPost($post_id);
 
     }
 
@@ -76,7 +80,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="posts.php">
                                 <i class="ni ni-bullet-list-67 text-default"></i>
                                 <span class="nav-link-text">Posts</span>
                             </a>
@@ -356,32 +360,56 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form action="" method = "POST" enctype="multipart/form-data">
                                 <h6 class="heading-small text-muted mb-4">Post information</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-username">Post Title</label>
-                                                <input type="text" name="post_title" class="form-control" placeholder="Post Title">
+                                                <input type="text" name="post_title" class="form-control" placeholder="Post Title" value = "<?= $post[0]['post_title'] ?>">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-username">Post Category</label>
+                                                <?php
+                                                    include_once "../Crud.php";
+                                                    $crud = new Crud();
+                                                    $categories = $crud->read('Select * from categories');
+
+                                                ?>
+                                                <select name="cat_id" class ="form-control">
+                                                    <?php foreach($categories as $key => $category){ 
+                                                        $selected = $post[0]['cat_id'] == $category['cat_id'] ? "selected" : "" ?>
+                                                        <option <?= $selected ?> value="<?=  $category['cat_id'] ?>"><?= $category['cat_name'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="pl-lg-4 ">
                                     <div class="form-group ">
                                         <label class="form-control-label ">Post Content</label>
-                                        <textarea id="postContent" name="post_content" rows="15" class="form-control " placeholder="Enter post title"></textarea>
+                                        <textarea id="postContent" name="post_content" rows="15" class="form-control "><?= $post[0]['post_content'] ?></textarea>
                                     </div>
                                 </div>
                                 <div class="pl-lg-4 ">
                                     <label class="form-control-label ">Upload Post image</label>
                                     <div class="input-group">
-                                        <input type="file" name="post_image" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <input type="file" name="post_image" class="form-control">
                                     </div>
+                                    <img width = "150" height = "100" src="../post_images/post_<?=$post_id?>/<?=$post[0]['post_image'] ?>" />
                                 </div>
                                 <div class="d-flex mt-3 justify-content-end">
-                                    <a href="http://localhost/1_gridblog/public/post/list" class="btn btn-secondary">Back</a>
+                                    <a href="posts.php" class="btn btn-secondary">Back</a>
                                     <button type="submit" class="btn btn-success">Update Post</button>
                                 </div>
                             </form>
@@ -429,7 +457,12 @@
     <script src="../assets/backend/js/argon.js?v=1.2.0 "></script>
 
     <script>
-        var editor = new FroalaEditor('#postContent',{heightMin: 350});
+        var editor = new FroalaEditor('#postContent',
+        {   heightMin: 350,
+            enter: FroalaEditor.ENTER_BR,
+            inlineMode: false,
+            plainPaste: true
+        });
     </script>
 </body>
 

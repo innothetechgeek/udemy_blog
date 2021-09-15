@@ -34,10 +34,11 @@ class Crud{
 
     }
 
-    public function update($sql_query){
+    public function update($sql_query,$data_array){
 
+       // var_dump($sql_query); die();
         $stmt = $this->conn->prepare($sql_query);
-        $stmt->execute();
+        $stmt->execute($data_array);
 
     }
 

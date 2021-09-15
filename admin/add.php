@@ -1,6 +1,6 @@
 <?php
 
-    include_once 'PostController.php';
+    include_once '../PostController.php';
 
     $postController = new PostController();
 
