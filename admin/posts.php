@@ -382,7 +382,8 @@
                                                 </div>
                                             </th>
                                             <td class="budget">
-                                                <?= strip_tags((html_entity_decode(substr($post['post_content'],0,20)))) ?> ...
+                                                <?php $post_content = strip_tags($post['post_content']) ?>
+                                                <?= substr($post_content,0,15) ?> ...
                                             </td>
                                             <td>
                                                 <span class="badge badge-dot mr-4">
@@ -484,11 +485,6 @@
     <!-- Core -->
     <script src="../assets/backend/vendor/jquery/dist/jquery.min.js"></script>
     <script src="../assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/backend/vendor/js-cookie/js.cookie.js"></script>
-    <script src="../assets/backend/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-    <script src="../assets/backend/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-    <!-- Argon JS -->
-    <script src="../assets/backend/js/argon.js?v=1.2.0"></script>
 </body>
 
 </html>

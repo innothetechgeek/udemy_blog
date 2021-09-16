@@ -285,7 +285,8 @@
                                             <h5 class="post-title mb-3 mt-3">
                                                 <a href="post-details.html"><?= $post['post_title'] ?></a>
                                             </h5>
-                                            <p class="excerpt mb-0"> <?= substr($post['post_content'],0,60) ?> ... </p>
+                                            <?php $post_content = strip_tags($post['post_content']) ?>
+                                            <p class="excerpt mb-0">  <?= substr($post_content,0,60) ?> ... </p>
                                         </div>
                                         <div class="post-bottom clearfix d-flex align-items-center">
                                             <div class="social-share me-auto">

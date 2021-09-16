@@ -36,21 +36,22 @@ class PostController{
                     LEFT JOIN categories on categories.cat_id = posts.cat_id
                     LEFT JOIN comments on comments.post_id = posts.post_id
                     GROUP BY posts.post_id
-                    ORDER BY posts.post_id DESC";
+                    ORDER BY posts.post_id DESC LIMIT 8";
 
         return  $this->crud->read($query);
+
     }
 
     public function getPost($post_id){
 
-        $query = "Select posts.post_id,posts.post_title,posts.post_content,
-        posts.post_image, categories.cat_name, count(comments.post_id) as nu_comments
-        FROM posts
-        LEFT JOIN categories on categories.cat_id = posts.cat_id
-        LEFT JOIN comments on comments.post_id = posts.post_id
-        WHERE posts.post_id = $post_id
-        GROUP BY posts.post_id
-        ORDER BY posts.post_id DESC";
+        $query = "Select posts.post_id,posts.post_title,posts.cat_id,posts.post_content,
+                    posts.post_image, categories.cat_name, count(comments.post_id) as nu_comments
+                    FROM posts
+                    LEFT JOIN categories on categories.cat_id = posts.cat_id
+                    LEFT JOIN comments on comments.post_id = posts.post_id
+                    WHERE posts.post_id = $post_id
+                    GROUP BY posts.post_id
+                    ORDER BY posts.post_id DESC LIMIT 8";
 
         return  $this->crud->read($query);
 
@@ -72,7 +73,7 @@ class PostController{
                         post_image=?, cat_id=?
                         WHERE post_id=?";
         $data = [
-            htmlentities("<h1>hello</h1>"),
+             $_POST['post_content'],
              $_POST['post_title'],
              $image_name,
              $_POST['cat_id'],

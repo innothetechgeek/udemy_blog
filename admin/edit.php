@@ -386,7 +386,7 @@
                                                 ?>
                                                 <select name="cat_id" class ="form-control">
                                                     <?php foreach($categories as $key => $category){ 
-                                                        $selected = $post[0]['cat_id'] == $category['cat_id'] ? "selected" : "" ?>
+                                                         $selected = $post[0]['cat_id'] == $category['cat_id'] ? "selected" : "" ?>
                                                         <option <?= $selected ?> value="<?=  $category['cat_id'] ?>"><?= $category['cat_name'] ?></option>
                                                     <?php } ?>
                                                 </select>
