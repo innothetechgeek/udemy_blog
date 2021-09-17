@@ -1,16 +1,21 @@
 <?php
 
-    include_once '../PostController.php';
+    include_once '../../PostController.php';
 
-    $postController = new PostController();
+   
+    $post_id = $_GET['post-id'];
+
+    $post_controller = new PostController();
+    $post = $post_controller->getPost($post_id);
 
     if(($_SERVER['REQUEST_METHOD'] == 'POST')){
 
-        $postController->addPost();
+        $post_controller->editPost($post_id);
 
     }
 
 ?>
+
 
 <!--
 =========================================================
@@ -37,15 +42,15 @@
     <meta name="author" content="Creative Tim">
     <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
     <!-- Favicon -->
-    <link rel="icon" href="../assets/backend/img/brand/favicon.png" type="image/png">
+    <link rel="icon" href="../../assets/backend/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
-    <link rel="stylesheet" href="../assets/backend/vendor/nucleo/css/nucleo.css" type="text/css">
-    <link rel="stylesheet" href="../assets/backend/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/backend/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/backend/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <!-- Argon CSS -->
-    <link rel="stylesheet" href="../assets/backend/css/argon.css?v=1.2.0" type="text/css">
-    <link rel="stylesheet" href="../assets/plugins/froala/css/froala_editor.pkgd.min.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/backend/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="../../assets/plugins/froala/css/froala_editor.pkgd.min.css" type="text/css">
     <style>
         #fr-logo {
             display: none;
@@ -54,51 +59,9 @@
 </head>
 
 <body>
-    <!-- Sidenav -->
-    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-        <div class="scrollbar-inner">
-            <!-- Brand -->
-            <div class="sidenav-header  align-items-center">
-                <a class="navbar-brand" href="javascript:void(0)">
-                    <img src="../assets/backend/img/brand/blue.png" class="navbar-brand-img" alt="...">
-                </a>
-            </div>
-            <div class="navbar-inner">
-                <!-- Collapse -->
-                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-                    <!-- Nav items -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.html">
-                                <i class="ni ni-tv-2 text-primary"></i>
-                                <span class="nav-link-text">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="posts.php">
-                                <i class="ni ni-bullet-list-67 text-default"></i>
-                                <span class="nav-link-text">Posts</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="profile.html">
-                                <i class="ni ni-single-02 text-yellow"></i>
-                                <span class="nav-link-text">Profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html">
-                                <i class="ni ni-key-25 text-info"></i>
-                                <span class="nav-link-text">Logout</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Divider -->
-                    <hr class="my-3">
-                </div>
-            </div>
-        </div>
-    </nav>
+
+    <?php include_once "../sidenav.php" ?>
+    
     <!-- Main content -->
     <div class="main-content" id="panel">
         <!-- Topnav -->
@@ -345,7 +308,7 @@
         <!-- Page content -->
         <div class="container-fluid mt--6">
             <div class="row">
-                <div class="col-xl-11 order-xl-1">
+                <div class="col-xl-10 order-xl-1">
                     <div class="card">
                         <div class="card-header">
                             <div class="row align-items-center">
@@ -355,53 +318,57 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action ="" method ="POST" enctype="multipart/form-data">
+                            <form action="" method = "POST" enctype="multipart/form-data">
                                 <h6 class="heading-small text-muted mb-4">Post information</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-username">Post Title</label>
-                                                <input type="text" name="post_title" class="form-control" placeholder="Post Title">
+                                                <input type="text" name="post_title" class="form-control" placeholder="Post Title" value = "<?= $post[0]['post_title'] ?>">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-username">Post Category</label>
                                                 <?php
-                                                    include_once "../Crud.php";
+                                                    include_once "../../Crud.php";
                                                     $crud = new Crud();
                                                     $categories = $crud->read('Select * from categories');
 
                                                 ?>
                                                 <select name="cat_id" class ="form-control">
-                                                    <?php foreach($categories as $key => $category){ ?>
-                                                        <option value="<?=  $category['cat_id'] ?>"><?= $category['cat_name'] ?></option>
+                                                    <?php foreach($categories as $key => $category){ 
+                                                         $selected = $post[0]['cat_id'] == $category['cat_id'] ? "selected" : "" ?>
+                                                        <option <?= $selected ?> value="<?=  $category['cat_id'] ?>"><?= $category['cat_name'] ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="pl-lg-4 ">
                                     <div class="form-group ">
                                         <label class="form-control-label ">Post Content</label>
-                                        <textarea id="postContent" name="post_content" rows="19" class="form-control " placeholder="Enter post title"></textarea>
+                                        <textarea id="postContent" name="post_content" rows="15" class="form-control "><?= $post[0]['post_content'] ?></textarea>
                                     </div>
                                 </div>
                                 <div class="pl-lg-4 ">
                                     <label class="form-control-label ">Upload Post image</label>
                                     <div class="input-group">
-                                        <input type="file" name = "post_image" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <input type="file" name="post_image" class="form-control">
                                     </div>
+                                    <img width = "150" height = "100" src="../post_images/post_<?=$post_id?>/<?=$post[0]['post_image'] ?>" />
                                 </div>
                                 <div class="d-flex mt-3 justify-content-end">
                                     <a href="posts.php" class="btn btn-secondary">Back</a>
-                                    <button type="submit" class="btn btn-success">Add Post</button>
+                                    <button type="submit" class="btn btn-success">Update Post</button>
                                 </div>
                             </form>
                         </div>
@@ -438,17 +405,22 @@
     </div>
     <!-- Argon Scripts -->
     <!-- Core -->
-    <script src="../assets/backend/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/plugins/froala/js/froala_editor.pkgd.min.js"></script>
-    <script src="../assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js "></script>
-    <script src="../assets/backend/vendor/js-cookie/js.cookie.js "></script>
-    <script src="../assets/backend/vendor/jquery.scrollbar/jquery.scrollbar.min.js "></script>
-    <script src="../assets/backend/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js "></script>
+    <script src="../../assets/backend/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/plugins/froala/js/froala_editor.pkgd.min.js"></script>
+    <script src="../../assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js "></script>
+    <script src="../../assets/backend/vendor/js-cookie/js.cookie.js "></script>
+    <script src="../../assets/backend/vendor/jquery.scrollbar/jquery.scrollbar.min.js "></script>
+    <script src="../../assets/backend/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js "></script>
     <!-- Argon JS -->
-    <script src="../assets/backend/js/argon.js?v=1.2.0 "></script>
+    <script src="../../assets/backend/js/argon.js?v=1.2.0 "></script>
 
     <script>
-          var editor = new FroalaEditor('#postContent',{heightMin: 350});
+        var editor = new FroalaEditor('#postContent',
+        {   heightMin: 350,
+            enter: FroalaEditor.ENTER_BR,
+            inlineMode: false,
+            plainPaste: true
+        });
     </script>
 </body>
 

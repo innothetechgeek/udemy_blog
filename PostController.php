@@ -59,28 +59,19 @@ class PostController{
 
     public function editPost($post_id){
 
-        $image_name = basename($_FILES["post_image"]["name"]);
-        $old_image = $this->crud->read("Select post_image from posts where post_id = $post_id")[0]['post_image'];
-
-        $image_name =  $image_name ?  $image_name : $old_image;
-          
-          
-        
+       
         if(!empty($_FILES["post_image"]['name'])) $this->deleteOldImage($post_id);
 
-        $query =  "Update posts SET
-                        post_content=?, post_title=?, 
-                        post_image=?, cat_id=?
-                        WHERE post_id=?";
-        $data = [
-             $_POST['post_content'],
-             $_POST['post_title'],
-             $image_name,
-             $_POST['cat_id'],
-             $post_id
+        $data_array = [
+            'post_title' => $_POST['post_title'],
+            'cat_id' => $_POST['cat_id'],
+            'post_content' => $_POST['post_content']
         ];
 
-        $this->crud->update($query, $data);
+        $post_image = basename($_FILES["post_image"]["name"]);      
+        if(!empty($post_image)) $data_array['post_image'] = basename($_FILES["post_image"]["name"]);
+
+        $this->crud->update($data_array,'posts',$post_id,'post_id');
 
         if(!empty($_FILES["post_image"]['name'])) $this->moveUploadedImage($post_id);
         

@@ -23,82 +23,38 @@
     <meta name="author" content="Creative Tim">
     <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
     <!-- Favicon -->
-    <link rel="icon" href="../assets/backend/img/brand/favicon.png" type="image/png">
+    <link rel="icon" href="../../assets/backend/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
-    <link rel="stylesheet" href="../assets/backend/vendor/nucleo/css/nucleo.css" type="text/css">
-    <link rel="stylesheet" href="../assets/backend/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/backend/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/backend/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <!-- Argon CSS -->
-    <link rel="stylesheet" href="../assets/backend/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="../../assets/backend/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
 <body>
-    <!-- Sidenav -->
-    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-        <div class="scrollbar-inner">
-            <!-- Brand -->
-            <div class="sidenav-header  align-items-center">
-                <a class="navbar-brand" href="javascript:void(0)">
-                    <img src="../assets/backend/img/brand/blue.png" class="navbar-brand-img" alt="...">
-                </a>
-            </div>
-            <div class="navbar-inner">
-                <!-- Collapse -->
-                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-                    <!-- Nav items -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.php">
-                                <i class="ni ni-tv-2 text-primary"></i>
-                                <span class="nav-link-text">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="posts.php">
-                                <i class="ni ni-bullet-list-67 text-default"></i>
-                                <span class="nav-link-text">Posts</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="profile.html">
-                                <i class="ni ni-single-02 text-yellow"></i>
-                                <span class="nav-link-text">Profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html">
-                                <i class="ni ni-key-25 text-info"></i>
-                                <span class="nav-link-text">Logout</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Divider -->
-                    <hr class="my-3">
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include_once "../sidenav.php" ?>
     <!-- Main content -->
     <div class="main-content" id="panel">
         <!-- Topnav -->
         <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Search form -->
-                    <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
-                        <div class="form-group mb-0">
-                            <div class="input-group input-group-alternative input-group-merge">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Search form -->
+                        <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+                            <div class="form-group mb-0">
+                                <div class="input-group input-group-alternative input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                    </div>
+                                    <input class="form-control" placeholder="Search" type="text">
                                 </div>
-                                <input class="form-control" placeholder="Search" type="text">
                             </div>
-                        </div>
-                        <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-                    </form>
+                            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+                </form>
                     <!-- Navbar links -->
                     <ul class="navbar-nav align-items-center  ml-md-auto ">
                         <li class="nav-item d-xl-none">
@@ -235,8 +191,8 @@
                                 <div class="row shortcuts px-4">
                                     <a href="#!" class="col-4 shortcut-item">
                                         <span class="shortcut-media avatar rounded-circle bg-gradient-red">
-                      <i class="ni ni-calendar-grid-58"></i>
-                    </span>
+                                <i class="ni ni-calendar-grid-58"></i>
+                                </span>
                                         <small>Calendar</small>
                                     </a>
                                     <a href="#!" class="col-4 shortcut-item">
@@ -278,8 +234,8 @@
                             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="../assets/backend/img/theme/team-4.jpg">
-                  </span>
+                                    <img alt="Image placeholder" src="../../assets/backend/img/theme/team-4.jpg">
+                                    </span>
                                     <div class="media-body  ml-2  d-none d-lg-block">
                                         <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
                                     </div>
@@ -322,19 +278,23 @@
             <div class="container-fluid">
                 <div class="header-body">
                     <div class="row align-items-center py-4">
-                        <div class="col-lg-6 col-7">
-                            <h6 class="h2 text-white d-inline-block mb-0">Posts</h6>
-                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Admin</li>
-                                     <li class="breadcrumb-item active" aria-current="page">Posts</li>
-                                </ol>
-                            </nav>
-                        </div>
-                        <div class="col-lg-6 col-5 text-right">
-                            <a href="add.php" class="btn btn-sm btn-neutral">Add New</a>
-                        </div>
+                        <div class="col-lg-8 col-8">
+                            <div class="row">                           
+                                <div class="col-8">
+                                    <h6 class="h2 text-white d-inline-block mb-0">Posts</h6>
+                                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Admin</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                                        </ol>
+                                    </nav>
+                                </div>                            
+                                <div class="col-4 text-right justify-content-center mt-3">
+                                    <a href="add.php" class="btn btn-sm btn-neutral">Add New</a>
+                                </div>
+                            </div>
+                        </div>                       
                     </div>
                 </div>
             </div>
@@ -342,85 +302,118 @@
         <!-- Page content -->
         <div class="container-fluid mt--6">
             <div class="row">
-                <div class="col">
+                <div class="col-8">
                     <div class="card">
                         <!-- Card header -->
                         <div class="card-header border-0">
-                            <h3 class="mb-0">Posts</h3>
+                            <h3 class="mb-0">Categories</h3>
                         </div>
                         <!-- Light table -->
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col" class="sort" data-sort="name">Post Title</th>
-                                        <th scope="col" class="sort" data-sort="budget">Post content</th>
-                                        <th scope="col" class="sort" data-sort="status">Comments</th>
-                                        <th scope="col" class="sort" data-sort="status">Status</th>
+                                        <th scope="col" class="sort" data-sort="name">Category Name</th>
                                         <th scope="col" class="sort" data-sort="completion">Action</th>
-                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody class="list">
-                                    <?php
-                                        include_once '../PostController.php';
-                                        $postController = new PostController();
-                                        $posts = $postController->getPosts();
-
-
-                                    ?>
-                                   <?php foreach($posts as $key => $post){ ?>
                                         <tr>
-                                            <th scope="row">
-                                                <div class="media align-items-center">
-                                                    <a href="#" class="avatar  mr-3">
-                                                        <img width = '60' height = '48' src="../post_images/post_<?=$post['post_id']?>/<?=$post['post_image'] ?>" />
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <span class="name mb-0 text-sm"><?= $post['post_title'] ?></span>
-                                                    </div>
-                                                </div>
-                                            </th>
                                             <td class="budget">
-                                                <?php $post_content = strip_tags($post['post_content']) ?>
-                                                <?= substr($post_content,0,15) ?> ...
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dot mr-4">
-                                                <i class="bg-warning"></i>
-                                                <span class="status"><?= $post['nu_comments'] ?></span>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <div class="avatar-group">
-                                                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                                                        <img alt="Image placeholder" src="../assets/backend/img/theme/team-1.jpg">
-                                                    </a>
-                                                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                                                        <img alt="Image placeholder" src="../assets/backend/img/theme/team-2.jpg">
-                                                    </a>
-                                                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
-                                                        <img alt="Image placeholder" src="../assets/backend/img/theme/team-3.jpg">
-                                                    </a>
-                                                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                                                        <img alt="Image placeholder" src="../assets/backend/img/theme/team-4.jpg">
-                                                    </a>
-                                                </div>
-                                            </td>
+                                                Web Development
+                                            </td>                                          
 
-                                            <td class="text-right">
+                                            <td>
                                                 <div class="dropdown">
                                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                        <a class="dropdown-item" href="edit.php?post-id=<?= $post['post_id'] ?>">Edit</a>
+                                                        <a class="dropdown-item" href="edit.php?post-id=?>">Edit</a>
+                                                        <a class="dropdown-item" href="#">Mark as featured</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
                                                         <a class="dropdown-item" href="#">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                    <?php } ?>
+                                        <tr>
+                                            <td class="budget">
+                                               Fashion
+                                            </td>                                          
+
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                        <a class="dropdown-item" href="edit.php?post-id=?>">Edit</a>
+                                                        <a class="dropdown-item" href="#">Mark as featured</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="budget">
+                                                Networking
+                                            </td>                                          
+
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                        <a class="dropdown-item" href="edit.php?post-id=?>">Edit</a>
+                                                        <a class="dropdown-item" href="#">Mark as featured</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="budget">
+                                                Health Wealness
+                                            </td>                                          
+
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                        <a class="dropdown-item" href="edit.php?post-id=?>">Edit</a>
+                                                        <a class="dropdown-item" href="#">Mark as featured</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="budget">
+                                               Tourism
+                                            </td>                                          
+
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                        <a class="dropdown-item" href="edit.php?post-id=?>">Edit</a>
+                                                        <a class="dropdown-item" href="#">Mark as featured</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>

@@ -23,15 +23,15 @@
     <meta name="author" content="Creative Tim">
     <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
     <!-- Favicon -->
-    <link rel="icon" href="../assets/brand/favicon.png" type="image/png">
+    <link rel="icon" href="../../assets/brand/favicon.png" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
-    <link rel="stylesheet" href="../assets/backend/vendor/nucleo/css/nucleo.css" type="text/css">
-    <link rel="stylesheet" href="../assets/backend/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/backend/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/backend/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <!-- Page plugins -->
     <!-- Argon CSS -->
-    <link rel="stylesheet" href="../assets/backend/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="../../assets/backend/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
 <body>
@@ -324,18 +324,18 @@
                 <div class="header-body">
                     <div class="row align-items-center py-4">
                         <div class="col-lg-6 col-7">
-                            <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                            <h6 class="h2 text-white d-inline-block mb-0">Dashboard</h6>
                             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                     <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                                    <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Default</li>
+                                    <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                                 </ol>
                             </nav>
                         </div>
                         <div class="col-lg-6 col-5 text-right">
-                            <a href="#" class="btn btn-sm btn-neutral">New</a>
-                            <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+                            <a href="add.php" class="btn btn-sm btn-neutral">Add New Post</a>
+                            <a href="../categories/add.php" class="btn btn-sm btn-neutral">Add New Category</a>
                         </div>
                     </div>
                     <!-- Card stats -->
@@ -738,16 +738,16 @@
     </div>
     <!-- Argon Scripts -->
     <!-- Core -->
-    <script src="../assets/backend/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/backend/vendor/js-cookie/js.cookie.js"></script>
-    <script src="../assets/backend/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-    <script src="../assets/backend/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <script src="../../assets/backend/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/backend/vendor/js-cookie/js.cookie.js"></script>
+    <script src="../../assets/backend/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="../../assets/backend/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
     <!-- Optional JS -->
-    <script src="../assets/backend/vendor/chart.js/dist/Chart.min.js"></script>
-    <script src="../assets/backend/vendor/chart.js/dist/Chart.extension.js"></script>
+    <script src="../../assets/backend/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="../../assets/backend/vendor/chart.js/dist/Chart.extension.js"></script>
     <!-- Argon JS -->
-    <script src="../assets/backend/js/argon.js?v=1.2.0"></script>
+    <script src="../../assets/backend/js/argon.js?v=1.2.0"></script>
 </body>
 
 </html>

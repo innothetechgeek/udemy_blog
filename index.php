@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="assets/frontend/css/simple-line-icons.css" type="text/css" media="all">
     <link rel="stylesheet" href="assets/frontend/css/style.css" type="text/css" media="all">
 
+    <!-- aos scroll plugin -->
+    <link rel="stylesheet" href="assets/plugins/aos/aos.css" type="text/css" media="all">
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -258,18 +261,17 @@
                 <div class="row gy-4">
 
                     <div class="col-lg-8">
-
                         <div class="row gy-4">
                             <?php foreach($posts as $key => $post) { ?>
                                 <div class="col-sm-6">
                                     <!-- post -->
-                                    <div class="post post-grid rounded bordered">
+                                    <div class="post post-grid rounded bordered" data-aos="fade-up" data-aos-offset="220" data-aos-duration ="1000">
                                         <div class="thumb top-rounded">
                                             <a href="category.html" class="category-badge position-absolute"><?= $post['cat_name'] ?></a>
                                             <span class="post-format">
                                             <i class="icon-picture"></i>
                                             </span>
-                                            <a href="post-details.html">
+                                            <a href="post-details.php?post-id=<?= $post['post_id'] ?>">
                                                 <div class="inner">
                                                     <img src="post_images/post_<?=$post['post_id']?>/<?=$post['post_image']?>" alt="post-title" />
                                                 </div>
@@ -283,7 +285,7 @@
                                                 <li class="list-inline-item">29 March 2021</li>
                                             </ul>
                                             <h5 class="post-title mb-3 mt-3">
-                                                <a href="post-details.html"><?= $post['post_title'] ?></a>
+                                                <a href="post-details.php?post-id=<?= $post['post_id'] ?>"><?= $post['post_title'] ?></a>
                                             </h5>
                                             <?php $post_content = strip_tags($post['post_content']) ?>
                                             <p class="excerpt mb-0">  <?= substr($post_content,0,60) ?> ... </p>
@@ -502,30 +504,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- widget advertisement -->
-                            <div class="widget no-container rounded text-md-center">
-                                <span class="ads-title">- Sponsored Ad -</span>
-                                <a href="#" class="widget-ads">
-                                    <img src="assets/frontend/images/ads/ad-360.png" alt="Advertisement" />
-                                </a>
-                            </div>
-
-                            <!-- widget tags -->
-                            <div class="widget rounded">
-                                <div class="widget-header text-center">
-                                    <h3 class="widget-title">Tag Clouds</h3>
-                                    <img src="assets/frontend/images/wave.svg" class="wave" alt="wave" />
-                                </div>
-                                <div class="widget-content">
-                                    <a href="#" class="tag">#Trending</a>
-                                    <a href="#" class="tag">#Video</a>
-                                    <a href="#" class="tag">#Featured</a>
-                                    <a href="#" class="tag">#Gallery</a>
-                                    <a href="#" class="tag">#Celebrities</a>
-                                </div>
-                            </div>
-
                         </div>
 
                     </div>
@@ -643,6 +621,13 @@
     <script src="assets/frontend/js/jquery.sticky-sidebar.min.js"></script>
     <script src="assets/frontend/js/custom.js"></script>
 
+    <script src="assets/plugins/aos/aos.js"></script>
+    <script>
+      $(function() {
+        AOS.init();
+      });
+    </script>   
+    
 </body>
 
 </html>
