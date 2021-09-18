@@ -1,8 +1,12 @@
 <?php
 
     include_once "PostController.php";
-    $post_controoler = new PostController();
-    $posts = $post_controoler->getPosts();
+    $post_controller = new PostController();
+    $posts = $post_controller->getPosts();
+
+    $featured_posts = $post_controller->getFeaturedPosts();
+    $popular_posts = $post_controller->getPopularPosts();
+    $categories = $post_controller->getCategories();
 
 
 ?>
@@ -119,30 +123,12 @@
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown active">
                                 <a class="nav-link dropdown-toggle" href="index.html">Home</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="index.html">Magazine</a></li>
-                                    <li><a class="dropdown-item" href="personal.html">Personal</a></li>
-                                    <li><a class="dropdown-item" href="personal-alt.html">Personal Alt</a></li>
-                                    <li><a class="dropdown-item" href="minimal.html">Minimal</a></li>
-                                    <li><a class="dropdown-item" href="classic.html">Classic</a></li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="category.html">Lifestyle</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="category.html">Inspiration</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#">Pages</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="category.html">Category</a></li>
-                                    <li><a class="dropdown-item" href="post-details.html">Blog Single</a></li>
-                                    <li><a class="dropdown-item" href="post-details-alt.html">Blog Single Alt</a></li>
-                                    <li><a class="dropdown-item" href="about.html">About</a></li>
-                                    <li><a class="dropdown-item" href="contact.html">Contact</a></li>
-                                </ul>
-                            </li>
+                            <?php foreach($categories as $category){ ?>
+                                <li  class="nav-item">
+                                    <a class="nav-link"><?= $category['cat_name'] ?></a>
+                                </li>
+                            <?php } ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Contact</a>
                             </li>
@@ -154,103 +140,26 @@
         </header>
 
         <section class="hero-carousel">
+            
             <div class="row post-carousel-featured post-carousel">
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge">Lifestyle</a>
-                        <h4 class="post-title"><a href="post-details.html">Important Thing You Need To Know About Swim</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">29 March 2021</li>
-                        </ul>
-                    </div>
-                    <a href="post-details.html">
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image" data-bg-image="assets/frontend/images/posts/featured-md-4.jpg"></div>
+                <?php foreach($featured_posts as $featured_post) { ?>
+                    <!-- post -->
+                    <div class="post featured-post-md">
+                        <div class="details clearfix">
+                            <a href="category.html" class="category-badge"> <?= $featured_post['cat_name'] ?></a>
+                            <h4 class="post-title"><a href="post-details.html"><?= $featured_post['post_title'] ?></a></h4>
+                            <ul class="meta list-inline mb-0">
+                                <li class="list-inline-item"><a href="#">Katen Doe</a></li>
+                                <li class="list-inline-item"><?= $featured_post['created_at'] ?></li>
+                            </ul>
                         </div>
-                    </a>
-                </div>
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge">Fashion</a>
-                        <h4 class="post-title"><a href="post-details.html">Most Burning Questions About Light Lamp</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">29 March 2021</li>
-                        </ul>
+                        <a href="post-details.html">
+                            <div class="thumb rounded">
+                                <div class="inner data-bg-image" data-bg-image="assets/frontend/images/posts/featured-md-4.jpg"></div>
+                            </div>
+                        </a>
                     </div>
-                    <a href="post-details.html">
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image" data-bg-image="assets/frontend/images/posts/featured3.jpg"></div>
-                        </div>
-                    </a>
-                </div>
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge">Inspiration</a>
-                        <h4 class="post-title"><a href="post-details.html">9 Most Awesome Blue Lake With Snow Mountain</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">29 March 2021</li>
-                        </ul>
-                    </div>
-                    <a href="post-details.html">
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image" data-bg-image="assets/frontend/images/posts/featured4.jpg"></div>
-                        </div>
-                    </a>
-                </div>
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge">Trending</a>
-                        <h4 class="post-title"><a href="post-details.html">Open The Gates For Chair By Using These Tips</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">29 March 2021</li>
-                        </ul>
-                    </div>
-                    <a href=".html">
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image" data-bg-image="assets/frontend/images/posts/featured5.jpg"></div>
-                        </div>
-                    </a>
-                </div>
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge">Politic</a>
-                        <h4 class="post-title"><a href="post-details.html">Feel Like A Pro With The Help Of These 7 Tips</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">29 March 2021</li>
-                        </ul>
-                    </div>
-                    <a href="post-details.html">
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image" data-bg-image="assets/frontend/images/posts/featured1.jpg"></div>
-                        </div>
-                    </a>
-                </div>
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge">Culture</a>
-                        <h4 class="post-title"><a href="post-details.html">Your Light Is About To Stop Being Relevant</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">29 March 2021</li>
-                        </ul>
-                    </div>
-                    <a href="post-details.html">
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image" data-bg-image="assets/frontend/images/posts/inspiration-3.jpg"></div>
-                        </div>
-                    </a>
-                </div>
+                <?php } ?>
             </div>
         </section>
 
@@ -366,58 +275,23 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <!-- post -->
-                                    <div class="post post-list-sm circle">
-                                        <div class="thumb circle">
-                                            <span class="number">2</span>
-                                            <a href="post-details.html">
-                                                <div class="inner">
-                                                    <img src="assets/frontend/images/posts/tabs-2.jpg" alt="post-title" />
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="details clearfix">
-                                            <h6 class="post-title my-0"><a href="post-details.html">An Incredibly Easy Method That Works For All</a></h6>
-                                            <ul class="meta list-inline mt-1 mb-0">
-                                                <li class="list-inline-item">29 March 2021</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- post -->
-                                    <div class="post post-list-sm circle">
-                                        <div class="thumb circle">
-                                            <span class="number">3</span>
-                                            <a href="post-details.html">
-                                                <div class="inner">
-                                                    <img src="assets/frontend/images/posts/tabs-3.jpg" alt="post-title" />
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="details clearfix">
-                                            <h6 class="post-title my-0"><a href="post-details.html">10 Ways To Immediately Start Selling Furniture</a></h6>
-                                            <ul class="meta list-inline mt-1 mb-0">
-                                                <li class="list-inline-item">29 March 2021</li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
                             <!-- widget categories -->
                             <div class="widget rounded">
                                 <div class="widget-header text-center">
-                                    <h3 class="widget-title">Explore Topics</h3>
+                                    <h3 class="widget-title">Explore Posts by categories</h3>
                                     <img src="assets/frontend/images/wave.svg" class="wave" alt="wave" />
                                 </div>
                                 <div class="widget-content">
-                                    <ul class="list">
-                                        <li><a href="#">Lifestyle</a><span>(5)</span></li>
-                                        <li><a href="#">Inspiration</a><span>(2)</span></li>
-                                        <li><a href="#">Fashion</a><span>(4)</span></li>
-                                        <li><a href="#">Politic</a><span>(1)</span></li>
-                                        <li><a href="#">Trending</a><span>(7)</span></li>
-                                        <li><a href="#">Culture</a><span>(3)</span></li>
-                                    </ul>
+                                   
+                                        <ul class="list">
+                                            <?php foreach($categories as $category){ ?>
+                                                <li><a href="#"><?= $category['cat_name'] ?></a><span>(<?= $category['num_of_posts'] ?>)</span></li>
+                                            <?php } ?>
+                                        </ul>
+                                  
                                 </div>
 
                             </div>
@@ -577,28 +451,11 @@
         <nav>
             <ul class="vertical-menu">
                 <li class="active">
-                    <a href="index.html">Home</a>
-                    <ul class="submenu">
-                        <li><a href="index.html">Magazine</a></li>
-                        <li><a href="personal.html">Personal</a></li>
-                        <li><a href="personal-alt.html">Personal Alt</a></li>
-                        <li><a href="minimal.html">Minimal</a></li>
-                        <li><a href="classic.html">Classic</a></li>
-                    </ul>
+                    <a href="/">Home</a>
                 </li>
-                <li><a href="category.html">Lifestyle</a></li>
-                <li><a href="category.html">Inspiration</a></li>
-                <li>
-                    <a href="#">Pages</a>
-                    <ul class="submenu">
-                        <li><a href="category.html">Category</a></li>
-                        <li><a href="post-details.php">Blog Single</a></li>
-                        <li><a href="post-details-alt.php">Blog Single Alt</a></li>
-                        <li><a href="about.php">About</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                    </ul>
-                </li>
-                <li><a href="contact.php">Contact</a></li>
+                <?php foreach($categories as $category){ ?>
+                    <li><a href="category.html"><?= $category['cat_name'] ?></a></li>
+                <?php } ?>
             </ul>
         </nav>
 

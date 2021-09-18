@@ -1,3 +1,23 @@
+<?php
+
+    include_once "UserController.php";
+
+    $user_controller = new UserController();
+    
+    $user_controller->logout();
+    
+    if(($_SERVER['REQUEST_METHOD'] == 'POST')){
+        
+        $username = $_POST['email'];
+        $password = $_POST['password'];
+        $user_controller->login($username, $password);
+
+    }
+
+
+?>
+
+
 <!--
 =========================================================
 * Argon Dashboard - v1.2.0
@@ -19,14 +39,14 @@
     <meta name="author" content="Creative Tim">
     <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
     <!-- Favicon -->
-    <link rel="icon" href="../assets/backend/img/brand/favicon.png" type="image/png">
+    <link rel="icon" href="assets/backend/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
-    <link rel="stylesheet" href="../assets/backend/vendor/nucleo/css/nucleo.css" type="text/css">
-    <link rel="stylesheet" href="../assets/backend/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/backend/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="assets/backend/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <!-- Argon CSS -->
-    <link rel="stylesheet" href="../assets/backend/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="assets/backend/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
 <body class="bg-default">
@@ -34,7 +54,7 @@
     <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand" href="dashboard.html">
-                <img src="assets/img/brand/white.png">
+                <img src="assets/brand/white.png">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -126,13 +146,13 @@
                             <div class="text-center text-muted mb-4">
                                 <small>Sign in with your credentials</small>
                             </div>
-                            <form role="form">
+                            <form role="form" method = "POST">
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-merge input-group-alternative">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                         </div>
-                                        <input class="form-control" placeholder="Email" type="email">
+                                        <input class="form-control" name="email" placeholder="email" type="email">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -140,17 +160,17 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                         </div>
-                                        <input class="form-control" placeholder="Password" type="password">
+                                        <input class="form-control" name ="password" placeholder="password" type="password">
                                     </div>
                                 </div>
                                 <div class="custom-control custom-control-alternative custom-checkbox">
                                     <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
                                     <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-muted">Remember me</span>
-                  </label>
+                                    <span class="text-muted">Remember me</span>
+                                    </label>
                                 </div>
                                 <div class="text-center">
-                                    <button type="button" class="btn btn-primary my-4">Sign in</button>
+                                    <button type="submit" class="btn btn-primary my-4">Sign in</button>
                                 </div>
                             </form>
                         </div>

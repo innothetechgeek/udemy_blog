@@ -1,5 +1,10 @@
 <?php
 
+    include_once "../../Session.php";
+    Session::start();
+    if(!Session::exists('active_user'))  header("location: ../../login.php");
+
+
     include_once '../../PostController.php';
 
    

@@ -28,15 +28,20 @@ class PostController{
 
     }
 
-    public function getPosts(){
+    public function getPosts($search_condition = ''){
 
-        $query = "Select posts.post_id,posts.post_title,posts.post_content,
+        $query = "Select posts.post_id,posts.post_title,posts.post_content,posts.created_at,
                     posts.post_image, categories.cat_name, count(comments.post_id) as nu_comments
                     FROM posts
                     LEFT JOIN categories on categories.cat_id = posts.cat_id
-                    LEFT JOIN comments on comments.post_id = posts.post_id
-                    GROUP BY posts.post_id
-                    ORDER BY posts.post_id DESC LIMIT 8";
+                    LEFT JOIN comments on comments.post_id = posts.post_id";
+        if($search_condition) $query .= $search_condition;
+
+         $query  .= " GROUP BY posts.post_id
+                      ORDER BY posts.post_id DESC LIMIT 8";
+        
+        
+       // var_dump($search_condition); die();
 
         return  $this->crud->read($query);
 
@@ -90,7 +95,7 @@ class PostController{
 
     public function moveUploadedImage($post_id){
 
-        $dir = "../post_images/post_$post_id";
+        $dir = "../../post_images/post_$post_id";
         $image_name = basename($_FILES["post_image"]["name"]);
 
         if ( !file_exists($dir) ) {
@@ -100,6 +105,56 @@ class PostController{
         $dir = $dir."/".$image_name;
 
         move_uploaded_file($_FILES["post_image"]["tmp_name"],$dir);
+
+    }
+
+    public function markAsFeatured($post_id){
+
+        $data_array = [
+            'is_featured' => 1,
+        ];
+        
+        $this->crud->update($data_array,'posts', $post_id, 'post_id');
+
+    }
+
+    public function markAsUnFeatured($post_id){
+
+        $data_array = [
+            'is_featured' => 0,
+        ];
+        
+        $this->crud->update($data_array,'posts', $post_id, 'post_id');
+
+
+    }
+
+    public function getFeaturedPosts(){
+
+        $search_condition = " WHERE is_featured = 1";
+        return $this->getPosts($search_condition);
+
+    }
+
+    public function getPopularPosts(){
+
+        $query = "SELECT post_title,post_image,created_at, count(comments.post_id) as nu_comments 
+                    FROM posts
+                    LEFT JOIN comments ON comments.post_id = posts.post_id
+                    ORDER BY nu_comments DESC
+                    LIMIT 3";
+
+        return $this->crud->read($query);
+
+    }
+
+    public function getCategories(){
+
+        $query = "SELECT cat_name, count(posts.cat_id) as num_of_posts from categories
+                    LEFT JOIN POSTS ON posts.cat_id = categories.cat_id
+                    GROUP BY categories.cat_id";
+
+        return $this->crud->read($query);
 
     }
 

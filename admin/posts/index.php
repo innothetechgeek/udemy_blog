@@ -1,3 +1,28 @@
+<?php
+    
+    include_once "../../Session.php";
+    Session::start();
+    if(!Session::exists('active_user'))  header("location: ../../login.php");
+
+
+    include_once '../../PostController.php';
+    $postController = new PostController();
+    $posts = $postController->getPosts();
+
+    if(isset($_GET['action']) && $_GET['action'] == 'mark-as-featured'){
+
+        $postController->markAsFeatured($_GET['post-id']);
+
+    }
+
+    if(isset($_GET['action']) && $_GET['action'] == 'mark-as-unfeatured'){
+
+        $postController->markAsUnFeatured($_GET['post-id']);
+
+    }
+
+
+?>
 <!--
 =========================================================
 * Argon Dashboard - v1.2.0
@@ -87,7 +112,7 @@
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../assets/backend/img/theme/team-1.jpg" class="avatar rounded-circle">
+                                                <img alt="Image placeholder" src="../../assets/backend/img/theme/team-1.jpg" class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
                                                 <div class="d-flex justify-content-between align-items-center">
@@ -106,7 +131,7 @@
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../assets/backend/img/theme/team-2.jpg" class="avatar rounded-circle">
+                                                <img alt="Image placeholder" src="../../assets/backend/img/theme/team-2.jpg" class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
                                                 <div class="d-flex justify-content-between align-items-center">
@@ -125,7 +150,7 @@
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../assets/backend/img/theme/team-3.jpg" class="avatar rounded-circle">
+                                                <img alt="Image placeholder" src="../../assets/backend/img/theme/team-3.jpg" class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
                                                 <div class="d-flex justify-content-between align-items-center">
@@ -144,7 +169,7 @@
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../assets/backend/img/theme/team-4.jpg" class="avatar rounded-circle">
+                                                <img alt="Image placeholder" src="../../assets/backend/img/theme/team-4.jpg" class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
                                                 <div class="d-flex justify-content-between align-items-center">
@@ -163,7 +188,7 @@
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../assets/backend/img/theme/team-5.jpg" class="avatar rounded-circle">
+                                                <img alt="Image placeholder" src="../../assets/backend/img/theme/team-5.jpg" class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
                                                 <div class="d-flex justify-content-between align-items-center">
@@ -234,7 +259,7 @@
                             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="../assets/backend/img/theme/team-4.jpg">
+                    <img alt="Image placeholder" src="../../assets/backend/img/theme/team-4.jpg">
                   </span>
                                     <div class="media-body  ml-2  d-none d-lg-block">
                                         <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
@@ -311,20 +336,13 @@
                                     <tr>
                                         <th scope="col" class="sort" data-sort="name">Post Title</th>
                                         <th scope="col" class="sort" data-sort="budget">Post content</th>
-                                        <th scope="col" class="sort" data-sort="status">Comments</th>
-                                        <th scope="col" class="sort" data-sort="status">Status</th>
+                                        <th scope="col" class="sort" data-sort="Comments">Comments</th>
+                                        <th scope="col" class="sort" data-sort="Status">Category</th>
                                         <th scope="col" class="sort" data-sort="completion">Action</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody class="list">
-                                    <?php
-                                        include_once '../../PostController.php';
-                                        $postController = new PostController();
-                                        $posts = $postController->getPosts();
-
-
-                                    ?>
                                    <?php foreach($posts as $key => $post){ ?>
                                         <tr>
                                             <th scope="row">
@@ -348,22 +366,8 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <div class="avatar-group">
-                                                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                                                        <img alt="Image placeholder" src="../assets/backend/img/theme/team-1.jpg">
-                                                    </a>
-                                                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                                                        <img alt="Image placeholder" src="../assets/backend/img/theme/team-2.jpg">
-                                                    </a>
-                                                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
-                                                        <img alt="Image placeholder" src="../assets/backend/img/theme/team-3.jpg">
-                                                    </a>
-                                                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                                                        <img alt="Image placeholder" src="../assets/backend/img/theme/team-4.jpg">
-                                                    </a>
-                                                </div>
+                                                <?= $post['cat_name'] ?>
                                             </td>
-
                                             <td class="text-right">
                                                 <div class="dropdown">
                                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -371,9 +375,9 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                         <a class="dropdown-item" href="edit.php?post-id=<?= $post['post_id'] ?>">Edit</a>
-                                                        <a class="dropdown-item" href="#">Mark as featured</a>
                                                         <a class="dropdown-item" href="#">Delete</a>
-                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                        <a class="dropdown-item" href="?action=mark-as-featured&post-id=<?= $post['post_id'] ?>">Mark as featured</a>
+                                                        <a class="dropdown-item" href="?action=mark-as-unfeatured&post-id=<?= $post['post_id'] ?>">Mark as unfeatured</a>
                                                     </div>
                                                 </div>
                                             </td>

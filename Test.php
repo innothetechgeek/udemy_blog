@@ -18,3 +18,5 @@ $crud = new Crud();
 //     $crud->create(['cat_name'=>$category],'categories');
 
 // }
+
+$crud->create(['name'=>'Admin User','email'=>'admin@gmail.com','password'=>md5('admin123')],'users');
