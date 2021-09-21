@@ -1,6 +1,7 @@
 <?php
 
     include_once 'PostController.php';
+    include_once 'CommentsController.php';
 
     
     $post_id = $_GET['post-id'];
@@ -10,6 +11,13 @@
 
     $popular_posts = $post_controller->getPopularPosts();
     $categories = $post_controller->getCategories();
+
+    if(($_SERVER['REQUEST_METHOD'] == 'POST')){
+
+       $comment_controller =  new CommentsController();
+       $comment_controller->addComment();
+
+    }
 
 ?>
 <!DOCTYPE html>
@@ -269,33 +277,35 @@
 
                                 <div class="messages"></div>
 
+                                <input type="hidden" name="post_id"  value = "<?= $post_id ?>"/>
+
                                 <div class="row">
 
                                     <div class="column col-md-12">
                                         <!-- Comment textarea -->
                                         <div class="form-group">
-                                            <textarea name="InputComment" id="InputComment" class="form-control" rows="4" placeholder="Your comment here..." required="required"></textarea>
+                                            <textarea name="comment_body" id="comment_body" class="form-control" rows="4" placeholder="Your comment here..." required="required"></textarea>
                                         </div>
                                     </div>
 
                                     <div class="column col-md-6">
                                         <!-- Email input -->
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Email address" required="required">
+                                            <input type="email" class="form-control" id="visitor_email" name="visitor_email" placeholder="Email address" required="required">
                                         </div>
                                     </div>
 
                                     <div class="column col-md-6">
                                         <!-- Name input -->
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="InputWeb" id="InputWeb" placeholder="Website" required="required">
+                                            <input type="text" class="form-control" name="visitor_name" id="visitor_website" placeholder="Website" required="required">
                                         </div>
                                     </div>
 
                                     <div class="column col-md-12">
                                         <!-- Email input -->
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="InputName" name="InputName" placeholder="Your name" required="required">
+                                            <input type="text" class="form-control" id="InputName" name="com_visitor_name" placeholder="Your name" required="required">
                                         </div>
                                     </div>
 
@@ -523,6 +533,8 @@
             <li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
         </ul>
     </div>
+    <!-- The actual snackbar -->
+    <div id="snackbar">Your comment has been sent and is pending approval by admin</div>
 
     <!-- JAVA SCRIPTS -->
     <script src="assets/frontend/js/jquery.min.js"></script>
@@ -531,6 +543,13 @@
     <script src="assets/frontend/js/slick.min.js"></script>
     <script src="assets/frontend/js/jquery.sticky-sidebar.min.js"></script>
     <script src="assets/frontend/js/custom.js"></script>
+
+    <script>
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 4000);
+    </script>
+
 
 </body>
 

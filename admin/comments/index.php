@@ -1,27 +1,30 @@
-<?php
+    <?php
+        include_once "../../Session.php";
+        include_once "../../CommentController.php";
 
-    include_once "../../Session.php";
-    Session::start();
-    if(!Session::exists('active_user'))  header("location: ../../login.php");
+        Session::start();
+        if(!Session::exists('active_user'))  header("location: ../../login.php");
 
-
-?>
-
-<!--
-=========================================================
-* Argon Dashboard - v1.2.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
+        $comments_controller = new CommentController();
+        $comments = $comments_controller->getAllComments();
 
 
-* Copyright  Creative Tim (http://www.creative-tim.com)
-* Coded by www.creative-tim.com
+    ?>
+    <!--
+        =========================================================
+        * Argon Dashboard - v1.2.0
+        =========================================================
+        * Product Page: https://www.creative-tim.com/product/argon-dashboard
+
+
+        * Copyright  Creative Tim (http://www.creative-tim.com)
+        * Coded by www.creative-tim.com
 
 
 
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
+        =========================================================
+        * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    -->
 <!DOCTYPE html>
 <html>
 
@@ -40,37 +43,30 @@
     <link rel="stylesheet" href="../../assets/backend/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <!-- Argon CSS -->
     <link rel="stylesheet" href="../../assets/backend/css/argon.css?v=1.2.0" type="text/css">
-    <link rel="stylesheet" href="../../assets/plugins/froala/css/froala_editor.pkgd.min.css" type="text/css">
-    <style>
-        #fr-logo {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
-    <!-- Sidenav -->
     <?php include_once "../sidenav.php" ?>
     <!-- Main content -->
     <div class="main-content" id="panel">
         <!-- Topnav -->
-        <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Search form -->
-                    <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
-                        <div class="form-group mb-0">
-                            <div class="input-group input-group-alternative input-group-merge">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+        <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Search form -->
+                        <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+                            <div class="form-group mb-0">
+                                <div class="input-group input-group-alternative input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                    </div>
+                                    <input class="form-control" placeholder="Search" type="text">
                                 </div>
-                                <input class="form-control" placeholder="Search" type="text">
                             </div>
-                        </div>
-                        <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-                    </form>
+                            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+                </form>
                     <!-- Navbar links -->
                     <ul class="navbar-nav align-items-center  ml-md-auto ">
                         <li class="nav-item d-xl-none">
@@ -160,7 +156,7 @@
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <!-- Avatar -->
-                                                <img alt="Image placeholder" src="../../assets/backend/img/theme/team-4.jpg" class="avatar rounded-circle">
+                                                <img alt="Image placeholder" src="../assets/backend/img/theme/team-4.jpg" class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
                                                 <div class="d-flex justify-content-between align-items-center">
@@ -207,8 +203,8 @@
                                 <div class="row shortcuts px-4">
                                     <a href="#!" class="col-4 shortcut-item">
                                         <span class="shortcut-media avatar rounded-circle bg-gradient-red">
-                      <i class="ni ni-calendar-grid-58"></i>
-                    </span>
+                                <i class="ni ni-calendar-grid-58"></i>
+                                </span>
                                         <small>Calendar</small>
                                     </a>
                                     <a href="#!" class="col-4 shortcut-item">
@@ -250,8 +246,8 @@
                             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="../../assets/backend/img/theme/team-4.jpg">
-                  </span>
+                                    <img alt="Image placeholder" src="../../assets/backend/img/theme/team-4.jpg">
+                                    </span>
                                     <div class="media-body  ml-2  d-none d-lg-block">
                                         <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
                                     </div>
@@ -290,71 +286,134 @@
         </nav>
         <!-- Header -->
         <!-- Header -->
-        <div class="header pb-6 d-flex align-items-center" style="min-height: 150px; background-image: url(../assets/backend/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
-            <!-- Mask -->
-            <span class="mask bg-gradient-default opacity-8"></span>
+        <div class="header bg-primary pb-6">
+            <div class="container-fluid">
+                <div class="header-body">
+                    <div class="row align-items-center py-4">
+                        <div class="col-lg-8 col-8">
+                            <div class="row">                           
+                                <div class="col-8">
+                                    <h6 class="h2 text-white d-inline-block mb-0">Posts</h6>
+                                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Admin</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                                        </ol>
+                                    </nav>
+                                </div>                            
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Page content -->
-        <div class="container-fluid mt--6" >
+        <div class="container-fluid mt--6">
             <div class="row">
-                <div class="col-xl-6 order-xl-1">
-                    <div class="card"  style = "height:550px">
-                        <div class="card-header">
-                            <div class="row align-items-center">
-                                <div class="col-8">
-                                    <h3 class="mb-0">Add Category</h3>
-                                </div>
-                            </div>
+                <div class="col-12">
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header border-0">
+                            <h3 class="mb-0">Comments</h3>
                         </div>
-                        <div class="card-body">
-                            <form action ="" method ="POST" enctype="multipart/form-data">
-                                <h6 class="heading-small text-muted mb-4">Category Information</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-username">Category Name</label>
-                                                <input type="text" name="post_title" class="form-control" placeholder="Post Title">
-                                            </div>
-                                        </div>
-                                    </div>                                    
-                                </div> 
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-lg-10 mt-6">
-                                            <div class="d-flex mt-3 justify-content-end">
-                                                <a href="index.php" class="btn btn-secondary">Back</a>
-                                                <button type="submit" class="btn btn-success">Update Category</button>
-                                            </div> 
-                                        </div>
-                                    </div>  
-                                </div>                           
-                            </form>
+                        <!-- Light table -->
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="name">Visitor Name</th>
+                                        <th scope="col" class="sort" data-sort="completion">Visitor Email</th>
+                                        <th scope="col" class="sort" data-sort="completion">Comment</th>
+                                        <th scope="col" class="sort" data-sort="completion">Post</th>
+                                        <th scope="col" class="sort" data-sort="completion">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="list">
+                                    <?php foreach($comments as $comment){ ?>
+                                        <tr>
+                                            <td class="budget">
+                                               <?= $comment['visitor_name'] ?>
+                                            </td>  
+                                            
+                                            <td class="budget">
+                                               <?= $comment['visitor_email'] ?>
+                                            </td>
+
+                                            <td class="budget">
+                                               <?= $comment['comment_body'] ?>
+                                            </td>
+
+                                            <td class="budget">
+                                               <?= $comment['post_title'] ?>
+                                            </td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                        <a class="dropdown-item" href="edit.php?post-id=?>">Approve</a>
+                                                        <a class="dropdown-item" href="edit.php?post-id=?>">Unapprove</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Card footer -->
+                        <div class="card-footer py-4">
+                            <nav aria-label="...">
+                                <ul class="pagination justify-content-end mb-0">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">
+                                            <i class="fas fa-angle-left"></i>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">
+                                            <i class="fas fa-angle-right"></i>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Footer -->
-            <footer class="footer pt-0 ">
-                <div class="row align-items-center justify-content-lg-between ">
-                    <div class="col-lg-6 ">
-                        <div class="copyright text-center text-lg-left text-muted ">
-                            &copy; 2020 <a href="https://www.creative-tim.com " class="font-weight-bold ml-1 " target="_blank ">Creative Tim</a>
+            <footer class="footer pt-0">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-6">
+                        <div class="copyright text-center  text-lg-left  text-muted">
+                            &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
                         </div>
                     </div>
-                    <div class="col-lg-6 ">
-                        <ul class="nav nav-footer justify-content-center justify-content-lg-end ">
-                            <li class="nav-item ">
-                                <a href="https://www.creative-tim.com " class="nav-link " target="_blank ">Creative Tim</a>
+                    <div class="col-lg-6">
+                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
                             </li>
-                            <li class="nav-item ">
-                                <a href="https://www.creative-tim.com/presentation " class="nav-link " target="_blank ">About Us</a>
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
                             </li>
-                            <li class="nav-item ">
-                                <a href="http://blog.creative-tim.com " class="nav-link " target="_blank ">Blog</a>
+                            <li class="nav-item">
+                                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
                             </li>
-                            <li class="nav-item ">
-                                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md " class="nav-link " target="_blank ">MIT License</a>
+                            <li class="nav-item">
+                                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
                             </li>
                         </ul>
                     </div>
@@ -365,17 +424,7 @@
     <!-- Argon Scripts -->
     <!-- Core -->
     <script src="../../assets/backend/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="../../assets/plugins/froala/js/froala_editor.pkgd.min.js"></script>
-    <script src="../../assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js "></script>
-    <script src="../../assets/backend/vendor/js-cookie/js.cookie.js "></script>
-    <script src="../../assets/backend/vendor/jquery.scrollbar/jquery.scrollbar.min.js "></script>
-    <script src="../../assets/backend/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js "></script>
-    <!-- Argon JS -->
-    <script src="../../assets/backend/js/argon.js?v=1.2.0 "></script>
-
-    <script>
-          var editor = new FroalaEditor('#postContent',{heightMin: 350});
-    </script>
+    <script src="../../assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -3,8 +3,10 @@
     include_once "UserController.php";
 
     $user_controller = new UserController();
-    
-    $user_controller->logout();
+
+    if(isset($_GET['action']) && $_GET['action'] == 'logout' ){
+        $user_controller->logout();
+    }
     
     if(($_SERVER['REQUEST_METHOD'] == 'POST')){
         

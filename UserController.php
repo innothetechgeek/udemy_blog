@@ -28,8 +28,9 @@ class UserController{
             var_dump('hello'); die();
 
         }else{
-            var_dump('false part'); die();
+
             return false;
+            
         }
 
     }

@@ -58,6 +58,30 @@
     <link rel="stylesheet" href="../../assets/backend/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
+<style>
+    .notification-bell-wrapper{
+        /* position:relative; */
+    }
+
+    .notification-circle{
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: linear-gradient(
+        180deg,#fb6340 0,#f56036 100%)!important;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 15px;
+        right: 25px;
+        z-index: 10;
+        font-size: 12px;
+    }
+
+</style>
+
 <body>
     <?php include_once "../sidenav.php" ?>
     <!-- Main content -->
@@ -98,8 +122,9 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ni ni-bell-55"></i>
+                            <a class="nav-link notification-bell-wrapper" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class = "notification-circle">4</span>
+                                <i class="ni ni-bell-55 notification-bell"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
                                 <!-- Dropdown header -->
@@ -334,9 +359,10 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col" class="sort" data-sort="name">Post Title</th>
+                                        <th  class="sort" data-sort="name">Post Title</th>
                                         <th scope="col" class="sort" data-sort="budget">Post content</th>
                                         <th scope="col" class="sort" data-sort="Comments">Comments</th>
+                                        <th scope="col" class="sort" data-sort="Comments">Featured</th>
                                         <th scope="col" class="sort" data-sort="Status">Category</th>
                                         <th scope="col" class="sort" data-sort="completion">Action</th>
                                         <th scope="col"></th>
@@ -355,17 +381,24 @@
                                                     </div>
                                                 </div>
                                             </th>
-                                            <td class="budget">
+                                            <td class="budget" >
                                                 <?php $post_content = strip_tags($post['post_content']) ?>
                                                 <?= substr($post_content,0,15) ?> ...
                                             </td>
                                             <td>
                                                 <span class="badge badge-dot mr-4">
-                                                <i class="bg-warning"></i>
+                                                <i class=""></i>
                                                 <span class="status"><?= $post['nu_comments'] ?></span>
                                                 </span>
                                             </td>
-                                            <td>
+                                            <td style="column-width: 50px;">
+                                            <span class="badge badge-dot mr-4">
+                                                <i class="bg-success"></i>
+                                                <?php $featured = $post['is_featured'] ? 'Yes' : 'No'; ?>
+                                                <span class="status"><?= $featured ?></span>
+                                                </span>
+                                            </td>
+                                            <td style="column-width: 80px;">
                                                 <?= $post['cat_name'] ?>
                                             </td>
                                             <td class="text-right">

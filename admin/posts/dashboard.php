@@ -1,10 +1,16 @@
 <?php
 
     include_once "../../Session.php";
+    include_once "../../PostController.php";
+
     Session::start();
     if(!Session::exists('active_user'))  header("location: ../../login.php");
 
+    $post_controller =  new PostController();
 
+    $stats = $post_controller->getDashboardStats();
+
+    $stats_one_week_ago = $post_controller->getTotalsForWeekAgo(); 
 
 ?>
 <!--
@@ -44,51 +50,7 @@
 </head>
 
 <body>
-    <!-- Sidenav -->
-    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-        <div class="scrollbar-inner">
-            <!-- Brand -->
-            <div class="sidenav-header  align-items-center">
-                <a class="navbar-brand" href="javascript:void(0)">
-                    <img src="../assets/brand/blue.png" class="navbar-brand-img" alt="...">
-                </a>
-            </div>
-            <div class="navbar-inner">
-                <!-- Collapse -->
-                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-                    <!-- Nav items -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.html">
-                                <i class="ni ni-tv-2 text-primary"></i>
-                                <span class="nav-link-text">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="posts.php">
-                                <i class="ni ni-bullet-list-67 text-default"></i>
-                                <span class="nav-link-text">Posts</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="profile.html">
-                                <i class="ni ni-single-02 text-yellow"></i>
-                                <span class="nav-link-text">Profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html">
-                                <i class="ni ni-key-25 text-info"></i>
-                                <span class="nav-link-text">Logout</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Divider -->
-                    <hr class="my-3">
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include_once "../sidenav.php" ?>
     <!-- Main content -->
     <div class="main-content" id="panel">
         <!-- Topnav -->
@@ -354,9 +316,15 @@
                                 <!-- Card body -->
                                 <div class="card-body">
                                     <div class="row">
+                                        <?php
+                                             $current_total = $stats[0]['total_posts'];
+                                             $total_one_week_ago = $stats_one_week_ago[0]['total_posts_week_ago'];
+                                             $up_by =  ($total_one_week_ago/100) *  $current_total;
+                                        
+                                        ?>
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Total traffic</h5>
-                                            <span class="h2 font-weight-bold mb-0">350,897</span>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Total Posts</h5>
+                                            <span class="h2 font-weight-bold mb-0"> <?= $current_total ?></span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -365,20 +333,26 @@
                                         </div>
                                     </div>
                                     <p class="mt-3 mb-0 text-sm">
-                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                        <span class="text-nowrap">Since last month</span>
+                                       
+                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> <?=  $up_by ?>%</span>
+                                        <span class="text-nowrap">Since last week</span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card card-stats">
+                                <?php
+                                    $current_total = $stats[0]['total_comments'];
+                                    $total_one_week_ago = $stats_one_week_ago[0]['total_comments_week_ago'];
+                                    $up_by =  ($total_one_week_ago/100) *  $current_total;                                        
+                                ?>
                                 <!-- Card body -->
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                                            <span class="h2 font-weight-bold mb-0">2,356</span>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Total Comments</h5>
+                                            <span class="h2 font-weight-bold mb-0"><?=  $current_total ?></span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -387,8 +361,8 @@
                                         </div>
                                     </div>
                                     <p class="mt-3 mb-0 text-sm">
-                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                        <span class="text-nowrap">Since last month</span>
+                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> <?= $up_by ?>%</span>
+                                        <span class="text-nowrap">Since last week</span>
                                     </p>
                                 </div>
                             </div>
@@ -399,7 +373,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Total Replies</h5>
                                             <span class="h2 font-weight-bold mb-0">924</span>
                                         </div>
                                         <div class="col-auto">
@@ -410,7 +384,7 @@
                                     </div>
                                     <p class="mt-3 mb-0 text-sm">
                                         <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                        <span class="text-nowrap">Since last month</span>
+                                        <span class="text-nowrap">Since last week</span>
                                     </p>
                                 </div>
                             </div>
@@ -418,11 +392,16 @@
                         <div class="col-xl-3 col-md-6">
                             <div class="card card-stats">
                                 <!-- Card body -->
+                                <?php
+                                    $current_total = $stats[0]['total_categories'];
+                                    $total_one_week_ago = $stats_one_week_ago[0]['total_categories_week_ago'];
+                                    $up_by =  ($total_one_week_ago/100) *  $current_total;                                        
+                                ?>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                                            <span class="h2 font-weight-bold mb-0">49,65%</span>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Total Categories</h5>
+                                            <span class="h2 font-weight-bold mb-0"><?= $current_total ?></span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -431,8 +410,8 @@
                                         </div>
                                     </div>
                                     <p class="mt-3 mb-0 text-sm">
-                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                        <span class="text-nowrap">Since last month</span>
+                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> <?=  $up_by ?>%</span>
+                                        <span class="text-nowrap">Since last week</span>
                                     </p>
                                 </div>
                             </div>

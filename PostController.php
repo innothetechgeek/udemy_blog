@@ -30,8 +30,10 @@ class PostController{
 
     public function getPosts($search_condition = ''){
 
-        $query = "Select posts.post_id,posts.post_title,posts.post_content,posts.created_at,
-                    posts.post_image, categories.cat_name, count(comments.post_id) as nu_comments
+        $query = "Select posts.post_id,posts.is_featured,posts.post_title,
+                    posts.post_content,posts.created_at,
+                    posts.post_image, categories.cat_name,
+                    count(comments.post_id) as nu_comments
                     FROM posts
                     LEFT JOIN categories on categories.cat_id = posts.cat_id
                     LEFT JOIN comments on comments.post_id = posts.post_id";
@@ -158,5 +160,28 @@ class PostController{
 
     }
 
+    public function getDashboardStats(){
+
+        $query = "SELECT
+                    (SELECT count(post_id) from posts) as total_posts,
+                    (SELECT count(com_id) from comments) as total_comments,
+                    (SELECT count(cat_id) from categories) as total_categories";
+
+        return $this->crud->read($query);
+
+    }
+
+    public function getTotalsForWeekAgo(){
+
+        
+        $where = "where created_at < NOW() - INTERVAL 1 WEEK";
+        $query = "SELECT
+            (SELECT count(post_id) from posts $where) as total_posts_week_ago,
+            (SELECT count(com_id) from comments $where) as total_comments_week_ago,
+            (SELECT count(cat_id) from categories $where) as total_categories_week_ago";
+        
+        return  $this->crud->read($query);
+
+    }
 
 }
