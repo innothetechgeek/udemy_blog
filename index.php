@@ -96,7 +96,7 @@
                     <div class="col-md-4 col-sm-12 col-xs-12 text-center">
                         <!-- site logo -->
                         <a class="navbar-brand" href="personal.html"><img src="assets/frontend/images/other/avatar-lg.png" alt="logo" /></a>
-                        <a href="personal.html" class="d-block text-logo">Argon<span class="dot">.</span></a>
+                        <a href="/" class="d-block text-logo">Argon<span class="dot">.</span></a>
                         <span class="slogan d-block">Professional Writer & Personal Blogger</span>
                     </div>
 
@@ -122,7 +122,7 @@
                         <!-- menus -->
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown active">
-                                <a class="nav-link dropdown-toggle" href="index.html">Home</a>
+                                <a class="nav-link dropdown-toggle" href="/">Home</a>
                             </li>
                             <?php foreach($categories as $category){ ?>
                                 <li  class="nav-item">
@@ -147,13 +147,13 @@
                     <div class="post featured-post-md">
                         <div class="details clearfix">
                             <a href="category.html" class="category-badge"> <?= $featured_post['cat_name'] ?></a>
-                            <h4 class="post-title"><a href="post-details.html"><?= $featured_post['post_title'] ?></a></h4>
+                            <h4 class="post-title"><a href='<?php echo "/post-details.php?post-id=".$featured_post['[post_id']  ?>'><?= $featured_post['post_title'] ?></a></h4>
                             <ul class="meta list-inline mb-0">
                                 <li class="list-inline-item"><a href="#">Katen Doe</a></li>
                                 <li class="list-inline-item"><?= $featured_post['created_at'] ?></li>
                             </ul>
                         </div>
-                        <a href="post-details.html">
+                        <a href='<?php echo "/post-details.php?post-id=".$featured_post['post_id']  ?>'>
                             <div class="thumb rounded">
                                 <div class="inner data-bg-image" data-bg-image="assets/frontend/images/posts/featured-md-4.jpg"></div>
                             </div>

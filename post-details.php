@@ -94,7 +94,7 @@
                         <!-- menus -->
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown active">
-                                <a class="nav-link dropdown-toggle" href="index.html">Home</a>
+                                <a class="nav-link dropdown-toggle" href="/">Home</a>
                             </li>
                             <?php $i = 0 ?>
                             <?php foreach($categories as $category) { 
