@@ -157,7 +157,7 @@ class PostController{
     public function getCategories(){
 
         $query = "SELECT cat_name, count(posts.cat_id) as num_of_posts from categories
-                    LEFT JOIN POSTS ON posts.cat_id = categories.cat_id
+                    LEFT JOIN posts ON posts.cat_id = categories.cat_id
                     GROUP BY categories.cat_id";
 
         return $this->crud->read($query);

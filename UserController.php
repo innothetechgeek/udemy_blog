@@ -25,7 +25,7 @@ class UserController{
             Session::set('active_user',$user);
 
             header("location: admin/posts/index.php");
-            var_dump('hello'); die();
+         //   var_dump('hello'); die();
 
         }else{
 
@@ -36,8 +36,10 @@ class UserController{
     }
 
     public function logout(){
+
         Session::start();
         session_unset();
+
     }
 
 
