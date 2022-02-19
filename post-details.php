@@ -533,8 +533,7 @@
             <li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
         </ul>
     </div>
-    <!-- The actual snackbar -->
-    <div id="snackbar">Your comment has been sent and is pending approval by admin</div>
+    <!-- <div id="snackbar">Your comment has been sent and is pending approval by admin</div> -->
 
     <!-- JAVA SCRIPTS -->
     <script src="assets/frontend/js/jquery.min.js"></script>
