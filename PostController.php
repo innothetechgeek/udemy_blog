@@ -128,6 +128,10 @@ class PostController{
         
         $this->crud->update($data_array,'posts', $post_id, 'post_id');
 
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        //header("Refresh:0");
+
 
     }
 
@@ -140,7 +144,7 @@ class PostController{
 
     public function getPopularPosts(){
 
-        $query = "SELECT post_title,post_image,created_at, count(comments.post_id) as nu_comments 
+        $query = "SELECT post_title,post_image,posts.created_at, count(comments.post_id) as nu_comments 
                     FROM posts
                     LEFT JOIN comments ON comments.post_id = posts.post_id
                     ORDER BY nu_comments DESC

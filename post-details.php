@@ -1,7 +1,7 @@
 <?php
 
     include_once 'PostController.php';
-    include_once 'CommentsController.php';
+    include_once 'CommentController.php';
 
     
     $post_id = $_GET['post-id'];
@@ -14,7 +14,7 @@
 
     if(($_SERVER['REQUEST_METHOD'] == 'POST')){
 
-       $comment_controller =  new CommentsController();
+       $comment_controller =  new CommentController();
        $comment_controller->addComment();
 
     }

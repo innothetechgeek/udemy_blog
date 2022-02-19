@@ -369,7 +369,7 @@
                                     <div class="input-group">
                                         <input type="file" name="post_image" class="form-control">
                                     </div>
-                                    <img width = "150" height = "100" src="../post_images/post_<?=$post_id?>/<?=$post[0]['post_image'] ?>" />
+                                    <img width = "150" height = "100" src="../../post_images/post_<?=$post_id?>/<?=$post[0]['post_image'] ?>" />
                                 </div>
                                 <div class="d-flex mt-3 justify-content-end">
                                     <a href="posts.php" class="btn btn-secondary">Back</a>
