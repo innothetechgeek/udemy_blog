@@ -8,6 +8,23 @@
         $comments_controller = new CommentController();
         $comments = $comments_controller->getAllComments();
 
+        if(isset($_GET['action']) && $_GET['action'] == 'approve'){
+
+            $comments_controller->approveComment( $_GET['com_id'] );
+
+        }
+
+        if(isset($_GET['action']) && $_GET['action'] == 'un-approve'){
+
+            $comments_controller->unApproveComment( $_GET['com_id'] );
+
+        }
+
+        if(isset($_GET['action']) && $_GET['action'] == 'delete'){
+
+            $comments_controller->deleteComment(  $_GET['com_id'] );
+        }
+
 
     ?>
     <!--
@@ -326,6 +343,7 @@
                                         <th scope="col" class="sort" data-sort="completion">Visitor Email</th>
                                         <th scope="col" class="sort" data-sort="completion">Comment</th>
                                         <th scope="col" class="sort" data-sort="completion">Post</th>
+                                        <th scope="col" class="sort" data-sort="completion">Approved</th>
                                         <th scope="col" class="sort" data-sort="completion">Action</th>
                                     </tr>
                                 </thead>
@@ -347,15 +365,18 @@
                                             <td class="budget">
                                                <?= $comment['post_title'] ?>
                                             </td>
+                                            <td class="budget">
+                                               <?= $comment['is_approved'] ?>
+                                            </td>
                                             <td>
                                                 <div class="dropdown">
                                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                        <a class="dropdown-item" href="edit.php?post-id=?>">Approve</a>
-                                                        <a class="dropdown-item" href="edit.php?post-id=?>">Unapprove</a>
-                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                        <a class="dropdown-item" href="?action=approve&com_id=<?= $comment['com_id']  ?>">Approve</a>
+                                                        <a class="dropdown-item" href="?action=un-approve&com_id=<?= $comment['com_id']  ?>">Unapprove</a>
+                                                        <a class="dropdown-item" href="?action=delete&com_id=<?= $comment['com_id']  ?>">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>

@@ -33,7 +33,12 @@ class CommentController{
 
     public function getAllComments(){
         
-        $query = "SELECT * from comments
+        $query = "SELECT *,
+                    CASE
+                        WHEN is_approved = 1 THEN 'Yes'
+                        ELSE 'No'
+                    End AS is_approved
+                    from comments
                     LEFT JOIN posts ON 
                     comments.post_id = posts.post_id";
 
@@ -41,6 +46,35 @@ class CommentController{
 
         return $this->crud->read($query);
 
+    }
+
+    public function approveComment($comment_id){
+
+        $query = "Update comments
+                    SET is_approved = 1
+                    where com_id = $comment_id";
+
+        $this->crud->update($query);
+
+    }
+
+    public function unApproveComment($comment_id){
+
+        $query = "Update comments
+                    SET is_approved = 0
+                    where com_id = $comment_id";
+
+        $this->crud->update($query);
+
+    }
+
+    public function deleteComment($comment_id){
+
+        $query = "Delete from comments
+                    Where com_id = $comment_id";
+
+        $this->crud->delete($query);
+        
     }
 }
 

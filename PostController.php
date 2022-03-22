@@ -69,16 +69,31 @@ class PostController{
        
         if(!empty($_FILES["post_image"]['name'])) $this->deleteOldImage($post_id);
 
-        $data_array = [
-            'post_title' => $_POST['post_title'],
-            'cat_id' => $_POST['cat_id'],
-            'post_content' => $_POST['post_content']
-        ];
+       
+            $post_title = $_POST['post_title'];
+            $cat_id = $_POST['cat_id'];
+            $post_content = $_POST['post_content'];
+        
+
+            $sql = "update posts set post_title = '$post_title',
+                    cat_id =  '$cat_id', 
+                    post_content = '$post_content'
+                    where post_id = $post_id"; 
+
+        $this->crud->update($sql);
 
         $post_image = basename($_FILES["post_image"]["name"]);      
-        if(!empty($post_image)) $data_array['post_image'] = basename($_FILES["post_image"]["name"]);
 
-        $this->crud->update($data_array,'posts',$post_id,'post_id');
+        if(!empty($post_image)){
+
+            $sql = "update posts set post_image = '$post_image'
+            where post_id = $post_id"; 
+
+            $this->crud->update($sql);
+
+        }
+
+       
 
         if(!empty($_FILES["post_image"]['name'])) $this->moveUploadedImage($post_id);
         
@@ -112,25 +127,23 @@ class PostController{
 
     public function markAsFeatured($post_id){
 
-        $data_array = [
-            'is_featured' => 1,
-        ];
+        $sql = "update posts
+                    set is_featured = 1
+                    where post_id = '$post_id'";
         
-        $this->crud->update($data_array,'posts', $post_id, 'post_id');
+        $this->crud->update($sql);
 
     }
 
     public function markAsUnFeatured($post_id){
 
-        $data_array = [
-            'is_featured' => 0,
-        ];
+        $sql = "update posts
+                    set is_featured = 0
+                    where post_id = '$post_id'";
         
-        $this->crud->update($data_array,'posts', $post_id, 'post_id');
+        $this->crud->update($sql);
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
-
-        //header("Refresh:0");
 
 
     }
@@ -156,7 +169,7 @@ class PostController{
 
     public function getCategories(){
 
-        $query = "SELECT cat_name, count(posts.cat_id) as num_of_posts from categories
+        $query = "SELECT categories.cat_id, cat_name, count(posts.cat_id) as num_of_posts from categories
                     LEFT JOIN posts ON posts.cat_id = categories.cat_id
                     GROUP BY categories.cat_id";
 

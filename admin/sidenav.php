@@ -37,12 +37,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="profile.html">
-                                <i class="ni ni-single-02 text-yellow"></i>
-                                <span class="nav-link-text">Profile</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="../../login.php?action=logout">
                                 <i class="ni ni-key-25 text-info"></i>
                                 <span class="nav-link-text">Logout</span>

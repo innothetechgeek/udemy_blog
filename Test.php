@@ -19,4 +19,10 @@ $crud = new Crud();
 
 // }
 
-$crud->create(['name'=>'Admin User','email'=>'admin@gmail.com','password'=>md5('admin123')],'users');
+ 
+
+  $result = $crud->read('select * from users where user_id = 1');
+
+  var_dump($result);
+
+ //$crud->create(['name'=>'Admin User','email'=>'admin@gmail.com','password'=>md5('admin123')],'users');
