@@ -152,10 +152,7 @@
                             <div class="post-header">
                                 <h1 class="title mt-0 mb-3"><?= $post[0]['post_title'] ?></h1>
                                 <ul class="meta list-inline mb-0">
-                                    <li class="list-inline-item">
-                                        <a href="#"><img src="assets/frontend/images/other/author-sm.png" class="author" alt="author" />Katen Doe</a>
-                                    </li>
-                                    <li class="list-inline-item"><a href="#">Trending</a></li>
+                                    <li class="list-inline-item"><a href="#"><?= $post[0]['cat_name'] ?></a></li>
                                     <li class="list-inline-item">29 March 2021</li>
                                 </ul>
                             </div>
@@ -166,28 +163,6 @@
                             <!-- post content -->
                             <div class="post-content clearfix">
                                 <?= $post[0]['post_content'] ?>
-                            </div>
-                            <!-- post bottom section -->
-                            <div class="post-bottom">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-md-6 col-12 text-center text-md-start">
-                                        <!-- tags -->
-                                        <a href="#" class="tag">#Trending</a>
-                                        <a href="#" class="tag">#Video</a>
-                                        <a href="#" class="tag">#Featured</a>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <!-- social icons -->
-                                        <ul class="social-icons list-unstyled list-inline mb-0 float-md-end">
-                                            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
 
                         </div>
@@ -233,7 +208,7 @@
                                         <h4 class="name"><a href="#">John Doe</a></h4>
                                         <span class="date">Jan 08, 2021 14:41 pm</span>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae odio ut tortor fringilla cursus sed quis odio.</p>
-                                        <a href="#" class="btn btn-default btn-sm">Reply</a>
+                                        <a href="#"  class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#replyModal">Reply</a>
                                     </div>
                                 </li>
                                 <!-- comment item -->
@@ -245,7 +220,7 @@
                                         <h4 class="name"><a href="#">Helen Doe</a></h4>
                                         <span class="date">Jan 08, 2021 14:41 pm</span>
                                         <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
-                                        <a href="#" class="btn btn-default btn-sm">Reply</a>
+                                        <a href="#" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#replyModal">Reply</a>
                                     </div>
                                 </li>
                                 <!-- comment item -->
@@ -257,7 +232,7 @@
                                         <h4 class="name"><a href="#">Anna Doe</a></h4>
                                         <span class="date">Jan 08, 2021 14:41 pm</span>
                                         <p>Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia.</p>
-                                        <a href="#" class="btn btn-default btn-sm">Reply</a>
+                                        <a href="#" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#replyModal">Reply</a>
                                     </div>
                                 </li>
                             </ul>
@@ -371,7 +346,6 @@
                             <div class="widget rounded">
                                 <div class="widget-header text-center">
                                     <h3 class="widget-title">Explore Topics</h3>
-                                    <img src="../assets/frontend/images/wave.svg" class="wave" alt="wave" />
                                 </div>
                                 <div class="widget-content">
                                     <ul class="list">
@@ -382,48 +356,6 @@
                                 </div>
 
                             </div>
-
-                            <!-- widget newsletter -->
-                            <div class="widget rounded">
-                                <div class="widget-header text-center">
-                                    <h3 class="widget-title">Newsletter</h3>
-                                    <img src="assets/frontend/images/wave.svg" class="wave" alt="wave" />
-                                </div>
-                                <div class="widget-content">
-                                    <span class="newsletter-headline text-center mb-3">Join 70,000 subscribers!</span>
-                                    <form>
-                                        <div class="mb-2">
-                                            <input class="form-control w-100 text-center" placeholder="Email address…" type="email">
-                                        </div>
-                                        <button class="btn btn-default btn-full" type="submit">Sign Up</button>
-                                    </form>
-                                    <span class="newsletter-privacy text-center mt-3">By signing up, you agree to our <a href="#">Privacy Policy</a></span>
-                                </div>
-                            </div>
-
-                            <!-- widget advertisement -->
-                            <div class="widget no-container rounded text-md-center">
-                                <span class="ads-title">- Sponsored Ad -</span>
-                                <a href="#" class="widget-ads">
-                                    <img src="assets/frontend/images/ads/ad-360.png" alt="Advertisement" />
-                                </a>
-                            </div>
-
-                            <!-- widget tags -->
-                            <div class="widget rounded">
-                                <div class="widget-header text-center">
-                                    <h3 class="widget-title">Tag Clouds</h3>
-                                    <img src="assets/frontend/images/wave.svg" class="wave" alt="wave" />
-                                </div>
-                                <div class="widget-content">
-                                    <a href="#" class="tag">#Trending</a>
-                                    <a href="#" class="tag">#Video</a>
-                                    <a href="#" class="tag">#Featured</a>
-                                    <a href="#" class="tag">#Gallery</a>
-                                    <a href="#" class="tag">#Celebrities</a>
-                                </div>
-                            </div>
-
                         </div>
 
                     </div>
@@ -494,35 +426,6 @@
             <img width="118" height="26" src="assets/brand/blue.png" alt="Katen" />
         </div>
 
-        <!-- menu -->
-        <nav>
-            <ul class="vertical-menu">
-                <li class="active">
-                    <a href="index.html">Home</a>
-                    <ul class="submenu">
-                        <li><a href="index.html">Magazine</a></li>
-                        <li><a href="personal.html">Personal</a></li>
-                        <li><a href="personal-alt.html">Personal Alt</a></li>
-                        <li><a href="minimal.html">Minimal</a></li>
-                        <li><a href="classic.html">Classic</a></li>
-                    </ul>
-                </li>
-                <li><a href="category.html">Lifestyle</a></li>
-                <li><a href="category.html">Inspiration</a></li>
-                <li>
-                    <a href="#">Pages</a>
-                    <ul class="submenu">
-                        <li><a href="category.html">Category</a></li>
-                        <li><a href="blog-single.html">Blog Single</a></li>
-                        <li><a href="blog-single-alt.html">Blog Single Alt</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-
         <!-- social icons -->
         <ul class="social-icons list-unstyled list-inline mb-0 mt-auto w-100">
             <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -534,6 +437,65 @@
         </ul>
     </div>
     <!-- <div id="snackbar">Your comment has been sent and is pending approval by admin</div> -->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-body">
+            <!-- comment form -->
+            <div class="comment-form rounded bordered padding-30">
+
+                <form id="comment-form" class="comment-form" method="post">
+
+                    <div class="messages"></div>
+
+                    <input type="hidden" name="post_id"  value = "<?= $post_id ?>"/>
+
+                    <div class="row">
+
+                        <div class="column col-md-12">
+                            <!-- Comment textarea -->
+                            <div class="form-group">
+                                <textarea name="comment_body" id="comment_body" class="form-control" rows="4" placeholder="Your comment here..." required="required"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="column col-md-6">
+                            <!-- Email input -->
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="visitor_email" name="visitor_email" placeholder="Email address" required="required">
+                            </div>
+                        </div>
+
+                        <div class="column col-md-6">
+                            <!-- Name input -->
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="visitor_name" id="visitor_website" placeholder="Website" required="required">
+                            </div>
+                        </div>
+
+                        <div class="column col-md-12">
+                            <!-- Email input -->
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="InputName" name="com_visitor_name" placeholder="Your name" required="required">
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn  btn-default">Save changes</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+
 
     <!-- JAVA SCRIPTS -->
     <script src="assets/frontend/js/jquery.min.js"></script>

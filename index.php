@@ -8,6 +8,13 @@
     $popular_posts = $post_controller->getPopularPosts();
     $categories = $post_controller->getCategories();
 
+    if(isset($_GET['filter'])){
+        
+        $filter = $_GET['filter'];
+        $posts = $post_controller->getPostsByCategory( $filter );
+
+    }
+
 
 ?>
 <!DOCTYPE html>

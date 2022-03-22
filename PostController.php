@@ -64,6 +64,14 @@ class PostController{
 
     }
 
+    public function getPostsByCategory($category_id){
+
+        $search_condition = "WHERE cat_id = $category_id";
+        return  $this->getPosts($search_condition);
+        
+
+    }
+
     public function editPost($post_id){
 
        
