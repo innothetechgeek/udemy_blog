@@ -76,6 +76,16 @@ class CommentController{
         $this->crud->delete($query);
         
     }
+
+    public function getReplies($comment_id){
+
+        $query = "Select * from 
+                    replies
+                    where comment_id = $comment_id";
+        
+        return $this->crud->read( $query );
+
+    }
 }
 
 

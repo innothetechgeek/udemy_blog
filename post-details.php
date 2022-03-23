@@ -9,6 +9,8 @@
     $post_controller = new PostController();
     $post = $post_controller->getPost($post_id);
 
+    $post_comments = $post_controller->getComments(18);
+
     $popular_posts = $post_controller->getPopularPosts();
     $categories = $post_controller->getCategories();
 
@@ -192,51 +194,51 @@
 
                         <!-- section header -->
                         <div class="section-header">
-                            <h3 class="section-title">Comments (3)</h3>
+                            <h3 class="section-title">Comments (<?= count($post_comments) ?>)</h3>
                             <img src="assets/frontend/images/wave.svg" class="wave" alt="wave" />
                         </div>
-                        <!-- post comments -->
-                        <div class="comments bordered padding-30 rounded">
+                       
+                            <!-- post comments -->
+                            <div class="comments bordered padding-30 rounded">
+                                <?php foreach($post_comments as $post_comment){ ?>
+                                    <ul class="comments">
+                                        <!-- comment item -->
+                                        <li class="comment rounded">
+                                            <div class="thumb">
+                                                <img src="assets/frontend/images/other/comment-1.png" alt="John Doe" />
+                                            </div>
+                                            <div class="details">
+                                                <h4 class="name"><a href="#"><?= $post_comment['visitor_name'] ?></a></h4>
+                                                <span class="date"><?= $post_comment['created_at'] ?></span>
+                                                <p><?= $post_comment['comment_body'] ?></p>
+                                                <a href="#" data-comment-id="<?= $post_comment['com_id'] ?> class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#replyModal">Reply</a>
+                                            </div>
+                                        </li>
 
-                            <ul class="comments">
-                                <!-- comment item -->
-                                <li class="comment rounded">
-                                    <div class="thumb">
-                                        <img src="assets/frontend/images/other/comment-1.png" alt="John Doe" />
-                                    </div>
-                                    <div class="details">
-                                        <h4 class="name"><a href="#">John Doe</a></h4>
-                                        <span class="date">Jan 08, 2021 14:41 pm</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae odio ut tortor fringilla cursus sed quis odio.</p>
-                                        <a href="#"  class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#replyModal">Reply</a>
-                                    </div>
-                                </li>
-                                <!-- comment item -->
-                                <li class="comment child rounded">
-                                    <div class="thumb">
-                                        <img src="assets/frontend/images/other/comment-2.png" alt="John Doe" />
-                                    </div>
-                                    <div class="details">
-                                        <h4 class="name"><a href="#">Helen Doe</a></h4>
-                                        <span class="date">Jan 08, 2021 14:41 pm</span>
-                                        <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
-                                        <a href="#" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#replyModal">Reply</a>
-                                    </div>
-                                </li>
-                                <!-- comment item -->
-                                <li class="comment rounded">
-                                    <div class="thumb">
-                                        <img src="assets/frontend/images/other/comment-3.png" alt="John Doe" />
-                                    </div>
-                                    <div class="details">
-                                        <h4 class="name"><a href="#">Anna Doe</a></h4>
-                                        <span class="date">Jan 08, 2021 14:41 pm</span>
-                                        <p>Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia.</p>
-                                        <a href="#" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#replyModal">Reply</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                        <?php
+
+                                                $replies = $comment_controller->getReplies($post_comment['com_id']);
+
+                                        ?>
+
+                                        <?php foreach($ $replies as $reply) { ?>
+                                            <li class="comment child rounded mb-15" style="margin-bottom: 30px">
+                                                <div class="thumb">
+                                                    <img src="assets/frontend/images/other/comment-1.png" alt="John Doe">
+                                                </div>
+                                                <div class="details">
+                                                    <h4 class="name"><a href="#"><?= $reply['visitor_name'] ?></a></h4>
+                                                    <span class="date"><?= $reply['created_at'] ?></span>
+                                                    <p><?= $reply['reply_body'] ?></p>
+                                                    <a href="#"  data-comment-id="<?= $post_comment['com_id'] ?> class="btn btn-default btn-sm">Reply</a>
+                                                </div>
+                                            </li>
+                                        <?php } ?>
+
+                                    </ul>
+                                <?php } ?>
+                            </div>
+                       
 
                         <div class="spacer" data-height="50"></div>
 

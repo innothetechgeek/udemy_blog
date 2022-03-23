@@ -259,7 +259,7 @@
                                    
                                         <ul class="list">
                                             <?php foreach($categories as $category){ ?>
-                                                <li><a href="?posts&filter=category=<?= $category['cat_id'] ?>"><?= $category['cat_name'] ?></a><span>(<?= $category['num_of_posts'] ?>)</span></li>
+                                                <li><a href="?filter=<?= $category['cat_id'] ?>"><?= $category['cat_name'] ?></a><span>(<?= $category['num_of_posts'] ?>)</span></li>
                                             <?php } ?>
                                         </ul>
                                   

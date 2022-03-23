@@ -37,7 +37,7 @@ class PostController{
                     FROM posts
                     LEFT JOIN categories on categories.cat_id = posts.cat_id
                     LEFT JOIN comments on comments.post_id = posts.post_id";
-        if($search_condition) $query .= $search_condition;
+        if($search_condition) $query .= " ".$search_condition;
 
          $query  .= " GROUP BY posts.post_id
                       ORDER BY posts.post_id DESC LIMIT 8";
@@ -66,7 +66,7 @@ class PostController{
 
     public function getPostsByCategory($category_id){
 
-        $search_condition = "WHERE cat_id = $category_id";
+        $search_condition = " WHERE posts.cat_id = $category_id";
         return  $this->getPosts($search_condition);
         
 
@@ -206,6 +206,15 @@ class PostController{
             (SELECT count(cat_id) from categories $where) as total_categories_week_ago";
         
         return  $this->crud->read($query);
+
+    }
+
+    public function getComments($post_id){
+
+        $query = "SELECT * from comments
+                    WHERE post_id = $post_id";
+        
+        return $this->crud->read($query);
 
     }
 
